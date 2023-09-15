@@ -1,0 +1,15 @@
+{
+    "dotnet.defaultSolution": "FacialRecognition.sln",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "localhost",
+            "database": "facialrecognition",
+            "username": "kodjocode",
+            "password": "kodjocode1234"
+        }
+    ]
+}

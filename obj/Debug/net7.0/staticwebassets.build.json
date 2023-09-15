@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "F4WdjlqdUdtBNPZGW1VqYvt3jd6j98g70lHmV49/gPc=",
+  "Source": "FacialRecognition",
+  "BasePath": "_content/FacialRecognition",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
