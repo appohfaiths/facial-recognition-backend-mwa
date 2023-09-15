@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+J8RtmDpMWAN1z6RLUPuMB5S3XKHmoVAm9KuOWYePQK44vXrUhwOka9tbnNAE+MRWrdm5wkwSt7yXPPhM/egOA==",
+  "dgSpecHash": "Umi8EtiRMigBOnfPpwFd4HFBIDdGS2/eqqBUMZx/zrbORVvkyb9p9pKdLTovyhXv6FTiF9qrr8cG4YrUDwgymQ==",
   "success": true,
   "projectFilePath": "/home/kodjocode/Codesandbox/C#/FacialRecognition/FacialRecognition.csproj",
   "expectedPackageFiles": [
@@ -53,6 +53,8 @@
     "/home/kodjocode/.nuget/packages/system.text.json/7.0.3/system.text.json.7.0.3.nupkg.sha512",
     "/home/kodjocode/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/home/kodjocode/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
+    "/home/kodjocode/.nuget/packages/microsoft.netcore.app.ref/7.0.10/microsoft.netcore.app.ref.7.0.10.nupkg.sha512",
+    "/home/kodjocode/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.10/microsoft.aspnetcore.app.ref.7.0.10.nupkg.sha512",
     "/home/kodjocode/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.10/microsoft.netcore.app.host.linux-x64.7.0.10.nupkg.sha512"
   ],
   "logs": []

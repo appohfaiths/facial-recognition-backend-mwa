@@ -2880,7 +2880,15 @@
         "warn": true,
         "downloadDependencies": [
           {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.10, 7.0.10]"
+          },
+          {
             "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[7.0.10, 7.0.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
             "version": "[7.0.10, 7.0.10]"
           }
         ],

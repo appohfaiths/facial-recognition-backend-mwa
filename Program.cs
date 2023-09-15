@@ -1,15 +1,10 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Emgu.CV;
 using Emgu.CV.Face;
-using Emgu.CV.Structure;
-using Emgu.CV.CvEnum;
 using FacialRecognition.Data;
 using FacialRecognition.Models;
 using FacialRecognition.Seed;
-using FacialRecognition.Service;
-using System.Drawing;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -88,83 +83,70 @@ app.MapDelete("/photo/{id}", async (FacialRecognitionContext db, int id) =>
 //save photos
 app.MapPost("/upload-photo", async (HttpContext context, FacialRecognitionContext db) =>
 {
-    try
-    {
-        // Read the image data from the request body
-        using (var memoryStream = new MemoryStream())
-        {
-            await context.Request.Body.CopyToAsync(memoryStream);
-            byte[] photoData = memoryStream.ToArray();
-            
-            // Generate a unique name for the photo (e.g., using GUID)
-            string photoName = Guid.NewGuid().ToString();
-            
-            // Store the photo in the database
-            var photo = new Photo
-            {
-                Name = photoName,
-                ImageData = photoData
-            };
-            db.Photos.Add(photo);
-            await db.SaveChangesAsync();
+        var file = context.Request.Form.Files["photo"];
 
-            // Return the ID of the newly created photo
-            return Results.Ok(new { photoId = photo.Id });
+        if (file != null && file.Length > 0)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+                byte[] photoData = memoryStream.ToArray();
+
+                string photoName = context.Request.Form["photoName"];
+                // Handle the case where "photoName" is missing, possibly by providing a default value
+                photoName ??= "DefaultName";
+
+                // Store the photo in the database
+                var photo = new Photo
+                {
+                    Name = photoName,
+                    ImageData = photoData
+                };
+                db.Photos.Add(photo);
+                await db.SaveChangesAsync();
+
+                // Return the ID of the newly created photo
+                return Results.Ok(new { photoId = photo.Id });
+            }
         }
-    }
-    catch (Exception ex)
-    {
-        return Results.BadRequest(ex.Message);
-    }
+        else
+        {
+            // Handle the case where no file was uploaded
+            return Results.BadRequest("No file uploaded.");
+        }
 });
+
 
 // Recognizing faces
 app.MapPost("/recognize", async (HttpContext context, FacialRecognitionContext db) =>
 {
-    try
+      try
     {
-        // Read the JSON data from the request body
-        using (var reader = new StreamReader(context.Request.Body))
+        // Read the request body
+        using (StreamReader reader = new StreamReader(context.Request.Body))
         {
-            var json = await reader.ReadToEndAsync();
-            
-            // Deserialize the JSON data into a class that represents your request
-            var requestData = JsonConvert.DeserializeObject<RecognizedFace>(json);
+            string requestBody = await reader.ReadToEndAsync();
 
-            // Access the base64-encoded image data from the request data
-            var imageBytes = requestData.FaceImageData;
+            // Deserialize the JSON request body into your ImageDataModel
+            RecognizedFace imageData = JsonConvert.DeserializeObject<RecognizedFace>(requestBody);
 
-            // Create a memory stream from the byte array
-            using (var memoryStream = new MemoryStream(imageBytes))
+            // Perform the facial recognition logic using the imageData
+
+            // Example response
+            var response = new RecognizedFace
             {
-                // Detect and recognize faces in the uploaded image
-                var image = new Mat();
-                CvInvoke.Imdecode(memoryStream.ToArray(), ImreadModes.Color, image);
+                Id = 3,
+                PhotoId = 2,
+                Name = "Three",
+                FaceImageData = new byte[0],
+                Label = 3
+            };
 
-                var detectedFaces = FacialRecognitionService.DetectFaces(image);
+            // Save the recognized face to the database
+            db.RecognizedFaces.Add(response);
+            await db.SaveChangesAsync();
 
-                var recognizedFaces = new List<RecognizedFace>();
-
-                foreach (var detectedFace in detectedFaces)
-                {
-                    // Recognize the face and get the label (person ID)
-                    var label = FacialRecognitionService.RecognizeFace(detectedFace, faceRecognizer);
-
-                    // Store the recognized face data in the database
-                    var recognizedFace = new RecognizedFace
-                    {
-                        FaceImageData = detectedFace.ToImage<Bgr, byte>().Bytes,
-                        Label = label,
-                    };
-
-                    db.RecognizedFaces.Add(recognizedFace);
-                    recognizedFaces.Add(recognizedFace);
-                }
-
-                await db.SaveChangesAsync();
-
-                return Results.Ok(recognizedFaces);
-            }
+            return Results.Ok(imageData);
         }
     }
     catch (Exception ex)
