@@ -2800,19 +2800,19 @@
     ]
   },
   "packageFolders": {
-    "/home/kodjocode/.nuget/packages/": {}
+    "/Users/faithsromawudaappoh/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/kodjocode/Codesandbox/C#/FacialRecognition/FacialRecognition.csproj",
+      "projectUniqueName": "/Users/faithsromawudaappoh/Codebase/Backend/facial-recognition-backend-mwa/FacialRecognition.csproj",
       "projectName": "FacialRecognition",
-      "projectPath": "/home/kodjocode/Codesandbox/C#/FacialRecognition/FacialRecognition.csproj",
-      "packagesPath": "/home/kodjocode/.nuget/packages/",
-      "outputPath": "/home/kodjocode/Codesandbox/C#/FacialRecognition/obj/",
+      "projectPath": "/Users/faithsromawudaappoh/Codebase/Backend/facial-recognition-backend-mwa/FacialRecognition.csproj",
+      "packagesPath": "/Users/faithsromawudaappoh/.nuget/packages/",
+      "outputPath": "/Users/faithsromawudaappoh/Codebase/Backend/facial-recognition-backend-mwa/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/kodjocode/.nuget/NuGet/NuGet.Config"
+        "/Users/faithsromawudaappoh/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -2878,20 +2878,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.10, 7.0.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[7.0.10, 7.0.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.10, 7.0.10]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2900,7 +2886,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
       }
     }
   }
